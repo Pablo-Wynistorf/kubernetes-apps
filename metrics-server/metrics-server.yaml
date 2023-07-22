@@ -115,13 +115,16 @@ apiVersion: apps/v1
 kind: DaemonSet
 metadata:
   labels:
-    k8s-app: metrics-server
+    app: metrics-server
   name: metrics-server
   namespace: kube-system
 spec:
   selector:
     matchLabels:
-      k8s-app: metrics-server
+      app: metrics-server
+  strategy:
+    rollingUpdate:
+      maxUnavailable: 0
   template:
     metadata:
       labels:
@@ -168,6 +171,8 @@ spec:
         volumeMounts:
         - mountPath: /tmp
           name: tmp-dir
+      nodeSelector:
+        kubernetes.io/os: linux
       priorityClassName: system-cluster-critical
       serviceAccountName: metrics-server
       volumes:
