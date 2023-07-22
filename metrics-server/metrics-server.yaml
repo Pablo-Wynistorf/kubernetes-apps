@@ -112,20 +112,23 @@ spec:
     k8s-app: metrics-server
 ---
 apiVersion: apps/v1
-kind: DaemonSet
+kind: Deployment
 metadata:
   labels:
-    app: metrics-server
+    k8s-app: metrics-server
   name: metrics-server
   namespace: kube-system
 spec:
   selector:
     matchLabels:
-      app: metrics-server
+      k8s-app: metrics-server
+  strategy:
+    rollingUpdate:
+      maxUnavailable: 0
   template:
     metadata:
       labels:
-        app: metrics-server
+        k8s-app: metrics-server
     spec:
       containers:
       - args:
