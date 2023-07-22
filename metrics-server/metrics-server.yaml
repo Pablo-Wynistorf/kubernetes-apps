@@ -122,9 +122,6 @@ spec:
   selector:
     matchLabels:
       app: metrics-server
-  strategy:
-    rollingUpdate:
-      maxUnavailable: 0
   template:
     metadata:
       labels:
