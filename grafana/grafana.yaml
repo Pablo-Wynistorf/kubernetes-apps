@@ -34,7 +34,7 @@ spec:
       timeInterval: 5s
       tlsSkipVerify: true
     name: Prometheus
-    url: http://172.20.219.132:9090
+    url: http://prometheus-kube-prometheus-prometheus.monitoring.svc:9090
   instanceSelector:
     matchLabels:
       dashboards: "grafana"
